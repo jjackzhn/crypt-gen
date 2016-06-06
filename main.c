@@ -35,7 +35,6 @@ int main(int argc, char *argv[]){
 		salt[i]='$';
 		salt[i+1]='\0';
 
-		printf("%s\n",salt);
 		printf("user%d:%s\n",count++,crypt(text,salt));
 	}
 
