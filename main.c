@@ -4,6 +4,7 @@
 #include <crypt.h>
 #include <errno.h>
 #include <string.h>
+#include <time.h>
 
 #define SALT_LEN 8
 
@@ -21,6 +22,9 @@ int main(int argc, char *argv[]){
 		exit(EXIT_FAILURE);
 	}
 
+	time_t t;
+	time(&t);
+	srand(t);
 	int count=0;
 	while(!feof(in)){
 		char text[50];
