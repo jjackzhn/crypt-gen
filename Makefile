@@ -13,5 +13,5 @@ bfgen: ow_libs bfgen.c
 	$(CC) $(CFLAGS) bfgen.c ow_bcrypt/*.o ow_bcrypt/x86.S -o bfgen
 
 clean:
-	rm -rf *.o
+	rm -rf *.o md5gen bfgen
 	(cd ow_bcrypt; make clean)
