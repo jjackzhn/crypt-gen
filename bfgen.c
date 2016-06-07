@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
-#include <time.h>
 
 #include "ow_bcrypt/ow-crypt.h"
 
@@ -20,20 +19,21 @@ int main(int argc, char *argv[]){
 		exit(EXIT_FAILURE);
 	}
 
-	time_t t;
-	time(&t);
-	srand(t);
 	int count=0;
+	FILE *random=fopen("/dev/urandom","r");
 	while(!feof(in)){
 		char text[50];
 		fscanf(in,"%s\n",text);
 		
-		char salt[50];
-		strcpy(salt,crypt_gensalt("$2a$",atoi(argv[1]),"salt",22));
+		char salt[50],salt_seed[25];
+		fscanf(random,"%22s",salt_seed);
+
+		strcpy(salt,crypt_gensalt("$2a$",atoi(argv[1]),salt_seed,22));
 
 		printf("user%d:%s\n",count++,crypt(text,salt));
 	}
 
+	fclose(random);
 	fclose(in);
 
 	return 0;
