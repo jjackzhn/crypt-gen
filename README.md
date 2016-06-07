@@ -1,4 +1,5 @@
 # crypt-gen
-A utility to generate password hashes for testing password cracking software
+Utilities to generate password hashes for testing password cracking software
 
-Compile with gcc main.c -o crypt-gen -lcrypt
+md5gen - generate md5crypt hashes from a plaintext password list
+bfgen - generate bcrypt hashes
